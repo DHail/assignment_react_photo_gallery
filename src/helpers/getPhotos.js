@@ -1,6 +1,16 @@
 const InstaData = require('./instaData');
 
 module.exports = {
+  
+  // checkAll: function(photosToDisplay, filter, searchTerm, sort, page) {
+  //   return getPhotos(filter)
+  //     .searchPhotos(searchTerm, photosToDisplay)
+  //     .sort(function(a, b) {
+  //       if (sort) return a.postTime - b.postTime;
+  //     })
+  //     .paginatePhotos(photosToDisplay, page);
+  // }
+
   getPhotos: function(formFilter) {
     if (formFilter == 'All') return InstaData;
 
@@ -14,10 +24,9 @@ module.exports = {
   },
 
   searchPhotos: function(searchTerm, photosToDisplay) {
-    return photosToDisplay;
     return photosToDisplay.filter(function(el) {
-      return el.username.includes(searchTerm) ||
-        el.caption.includes(searchTerm);
+      return el.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        el.caption.toLowerCase().includes(searchTerm.toLowerCase());
     });
   }
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import InstaData from '../helpers/instaData';
 
 const PhotoContainer = ({ data }) => {
-  let stringDate = new Date(Number(data.postTime));
+  let stringDate = new Date(Number(data.postTime) * 1000);
   stringDate = stringDate.toDateString();
 
   return (
@@ -22,6 +22,7 @@ const PhotoContainer = ({ data }) => {
         <p>Filter: {data.filter}</p>
         <p>comments: {data.comments} likes: {data.likes}</p>
         <p>date posted: {stringDate}</p>
+        <p>caption: {data.caption.substring(0, 20)}</p>
       </div>
     </div>
   );

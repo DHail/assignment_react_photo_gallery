@@ -46,13 +46,16 @@ class Form extends Component {
 
   searchHandler = e => {
     this.setState({
-      search: e.target.value
+      searchTerm: e.target.value
     });
+    console.log("Set State fired!!!")
   };
 
   render() {
     let photosToDisplay;
     const { filter, page, sort, searchTerm } = this.state;
+    // photosToDisplay = photoHelper.checkAll(photosToDisplay, filter, searchTerm, sort, page)
+
     photosToDisplay = photoHelper.getPhotos(filter);
     photosToDisplay = photoHelper.paginatePhotos(photosToDisplay, page);
 
@@ -79,9 +82,6 @@ class Form extends Component {
             <InputGroup name="search" labelText="Search">
               <input type="text" name="search" onChange={this.searchHandler} />
             </InputGroup>
-            <button type="button" name="search">
-              Search
-            </button>
           </div>
           <button type="button" name="sort" onClick={this.sortHandler}>
             Sort Results

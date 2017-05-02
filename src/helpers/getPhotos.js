@@ -4,10 +4,8 @@ module.exports = {
   getPhotos: function(formFilter) {
     if (formFilter == 'All') return InstaData;
 
-    return InstaData.map(function(el) {
-      if (el.filter == formFilter) {
-        return el;
-      }
+    return InstaData.filter(function(el) {
+      return el.filter == formFilter;
     });
   }
 };

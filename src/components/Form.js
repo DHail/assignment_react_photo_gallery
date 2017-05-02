@@ -18,11 +18,15 @@ class Form extends Component {
   onChangeInput = e => {
     console.log('Changed state to: ', e.target.value);
     this.setState({
-      [e.target.filter]: e.target.value
+      filter: e.target.value
     });
+      console.log(this.state.filter)
   };
 
+
+
   render() {
+    const {filter} = this.state;
     return (
       <div>
         <form>
@@ -31,15 +35,16 @@ class Form extends Component {
               <Select
                 name="filter"
                 options={filters}
-                value="Normal"
+                value={this.state.filter}
                 onChange={this.onChangeInput}
               />
             </InputGroup>
           </div>
         </form>
+        <h2>Number of Results: {photoHelper.getPhotos(filter).length}</h2>
 
         <AllPhotosContainer
-          filteredPhotos={photoHelper.getPhotos(this.state.filter)}
+          filteredPhotos={photoHelper.getPhotos(filter)}
         />
 
       </div>

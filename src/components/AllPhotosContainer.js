@@ -2,6 +2,7 @@ import React from 'react';
 import PhotoContainer from './PhotoContainer';
 
 const AllPhotosContainer = props => {
+  console.log("AllPhotosContainer: ", props.filteredPhotos)
   const displayPhotos = props.filteredPhotos.map(photo => {
     return <PhotoContainer data={photo} key={photo.postTime} />;
   });

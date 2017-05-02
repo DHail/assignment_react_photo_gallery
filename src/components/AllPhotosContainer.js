@@ -1,16 +1,17 @@
-import React from 'react'
-import PhotoContainer from './PhotoContainer'
+import React from 'react';
+import PhotoContainer from './PhotoContainer';
 
-const AllPhotosContainer = (props) => {
-    // console.log("Props: ", props)
-    const displayPhotos = props.filteredPhotos.map( (photo) => {
-      // console.log("Photo: ", photo);
-      return <PhotoContainer data={photo} />
-    })
-  // console.log("Display Photos: ", displayPhotos)
+const AllPhotosContainer = props => {
+  const displayPhotos = props.filteredPhotos.map(photo => {
+    return <PhotoContainer data={photo} />;
+  });
   return (
-    <div>{displayPhotos}</div>
-  )
-}
+    <div className="container">
+      <div className="row">
+        {displayPhotos}
+      </div>
+    </div>
+  );
+};
 
-export default AllPhotosContainer
+export default AllPhotosContainer;

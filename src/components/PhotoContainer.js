@@ -2,15 +2,15 @@ import React from 'react';
 import InstaData from '../helpers/instaData';
 
 const PhotoContainer = ({ data }) => {
-  console.log("Data: ", data)
-  console.log("Post Time: ", data.postTime);
   let stringDate = new Date(Number(data.postTime));
   stringDate = stringDate.toDateString();
 
   return (
-    <div className="panel panel-default">
+    <div className="panel panel-default col-sm-4">
       <div className="panel-body">
-        <a href={data.link}><img src={data.imgUrl} /></a>
+        <a href={data.link}>
+          <img src={data.imgUrl} />
+        </a>
       </div>
       <div className="panel-footer">
         <p>
@@ -19,6 +19,7 @@ const PhotoContainer = ({ data }) => {
             {data.username}
           </a>
         </p>
+        <p>Filter: {data.filter}</p>
         <p>comments: {data.comments} likes: {data.likes}</p>
         <p>date posted: {stringDate}</p>
       </div>

@@ -9,7 +9,8 @@ let allPosts = photos.data.map(function(el) {
     likes: el.likes.count,
     postTime: el.created_time,
     imgUrl: el.images.low_resolution.url,
-    link: el.link
+    link: el.link,
+    filter: el.filter
   };
 });
 

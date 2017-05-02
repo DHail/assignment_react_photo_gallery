@@ -11,5 +11,9 @@ module.exports = {
 
   paginatePhotos: function(filteredPhotos, page) {
     return filteredPhotos.slice(page * 12 - 12, page * 12);
+  },
+
+  searchPhotos: function(searchTerm, photosToDisplay) {
+    
   }
 };

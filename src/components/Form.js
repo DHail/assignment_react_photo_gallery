@@ -13,7 +13,9 @@ class Form extends Component {
     super();
     this.state = {
       filter: 'All',
-      page: 1
+      page: 1,
+      sort: true,
+      searchTerm: ''
     };
   }
 
@@ -25,7 +27,7 @@ class Form extends Component {
     console.log(this.state.filter);
   };
 
-  onClickHandler = e => {
+  paginationHandler = e => {
     if (e.target.name == 'next') {
       this.setState({
         page: this.state.page + 1
@@ -37,10 +39,29 @@ class Form extends Component {
     }
   };
 
+  sortHandler = e => {
+    this.setState({
+      sort: !this.state.sort
+    })
+  }
+
+  searchHandler = e => {
+    this.setState({
+      search: e.target.value
+    })
+  }
+
   render() {
-    const { filter, page } = this.state;
+    const { filter, page, sort, searchTerm } = this.state;
     photosToDisplay = photoHelper.getPhotos(filter);
     photosToDisplay = photoHelper.paginatePhotos(photosToDisplay, page);
+
+    photosToDisplay.sort(function(a, b) {
+      if(sort) return a.postTime - b.postTime;
+    })
+
+    photosToDisplay = photoHelper.searchPhotos(searchTerm, photosToDisplay)
+
 
     return (
       <div>
@@ -55,17 +76,29 @@ class Form extends Component {
               />
             </InputGroup>
           </div>
+          <div className="well">
+            <InputGroup name="search" labelText="Search">
+              <input type="text" name="search" />
+            </InputGroup>
+            <button type="button" name="search" onData={this.searchHandler}>
+              Search
+            </button>
+          </div>
+        <button type="button" name="sort" onClick={this.sortHandler}>
+          Sort Results
+        </button>
         </form>
+
         <h2>Number of Results: {photoHelper.getPhotos(filter).length}</h2>
 
         <AllPhotosContainer filteredPhotos={photosToDisplay} />
 
         <p>Current Page: {this.state.page}</p>
 
-        <button type="button" name="previous" onClick={this.onClickHandler}>
+        <button type="button" name="previous" onClick={this.paginationHandler}>
           Previous page
         </button>
-        <button type="button" name="next" onClick={this.onClickHandler}>
+        <button type="button" name="next" onClick={this.paginationHandler}>
           Next page
         </button>
 

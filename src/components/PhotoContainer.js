@@ -2,9 +2,9 @@ import React from 'react';
 import InstaData from '../helpers/instaData';
 
 const PhotoContainer = ({ data }) => {
-  console.log(data.postTime);
+  console.log("Data: ", data)
+  console.log("Post Time: ", data.postTime);
   let stringDate = new Date(Number(data.postTime));
-  console.log(stringDate);
   stringDate = stringDate.toDateString();
 
   return (

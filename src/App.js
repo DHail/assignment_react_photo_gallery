@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PhotoContainer from './components/PhotoContainer';
+import AllPhotosContainer from './components/AllPhotosContainer'
 import './App.css';
 
 const InstaData = require('./helpers/instaData');
@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <div className="App">
         <p>Loaded</p>
-        <PhotoContainer data={InstaData[0]} />
+        <AllPhotosContainer filteredPhotos={InstaData} />
       </div>
     );
   }

@@ -15,4 +15,4 @@ let allPosts = photos.data.map(function(el) {
 
 //console.log(allPosts);
 
-// module.exports = allPosts;
+module.exports = allPosts;

@@ -14,6 +14,10 @@ module.exports = {
   },
 
   searchPhotos: function(searchTerm, photosToDisplay) {
-    
+    return photosToDisplay;
+    return photosToDisplay.filter(function(el) {
+      return el.username.includes(searchTerm) ||
+        el.caption.includes(searchTerm);
+    });
   }
 };

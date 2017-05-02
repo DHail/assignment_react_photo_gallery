@@ -6,7 +6,6 @@ import AllPhotosContainer from './AllPhotosContainer';
 
 const photoHelper = require('../helpers/getPhotos');
 const filters = ['All', 'Normal', 'Lark', 'Inkwell', 'Reyes', 'Valencia'];
-let photosToDisplay;
 
 class Form extends Component {
   constructor() {
@@ -42,26 +41,26 @@ class Form extends Component {
   sortHandler = e => {
     this.setState({
       sort: !this.state.sort
-    })
-  }
+    });
+  };
 
   searchHandler = e => {
     this.setState({
       search: e.target.value
-    })
-  }
+    });
+  };
 
   render() {
+    let photosToDisplay;
     const { filter, page, sort, searchTerm } = this.state;
     photosToDisplay = photoHelper.getPhotos(filter);
     photosToDisplay = photoHelper.paginatePhotos(photosToDisplay, page);
 
     photosToDisplay.sort(function(a, b) {
-      if(sort) return a.postTime - b.postTime;
-    })
+      if (sort) return a.postTime - b.postTime;
+    });
 
-    photosToDisplay = photoHelper.searchPhotos(searchTerm, photosToDisplay)
-
+    photosToDisplay = photoHelper.searchPhotos(searchTerm, photosToDisplay);
 
     return (
       <div>
@@ -71,22 +70,22 @@ class Form extends Component {
               <Select
                 name="filter"
                 options={filters}
-                value={this.state.filter}
+                value={filter}
                 onChange={this.onChangeInput}
               />
             </InputGroup>
           </div>
           <div className="well">
             <InputGroup name="search" labelText="Search">
-              <input type="text" name="search" />
+              <input type="text" name="search" onChange={this.searchHandler} />
             </InputGroup>
-            <button type="button" name="search" onData={this.searchHandler}>
+            <button type="button" name="search">
               Search
             </button>
           </div>
-        <button type="button" name="sort" onClick={this.sortHandler}>
-          Sort Results
-        </button>
+          <button type="button" name="sort" onClick={this.sortHandler}>
+            Sort Results
+          </button>
         </form>
 
         <h2>Number of Results: {photoHelper.getPhotos(filter).length}</h2>
